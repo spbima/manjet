@@ -11,32 +11,83 @@
     <title>Messages</title>
 </head>
 <body>
-    <div>
-        <form action="/logout" method="post">
+    <div class="container">
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">#</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#">Messages</a>
+                    </li>
+                    <!--
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#">Disabled</a>
+                    </li>
+                    -->
+                </ul>
+
+                <form action="/logout" method="post" class="form-inline mt-2 mt-md-0">
+                    <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
+                    <button class="btn btn-info btn-sm my-2 my-sm-0" type="submit">Sign Out</button>
+                </form>
+            </div>
+        </nav>
+
+
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Messages</li>
+            </ol>
+        </nav>
+
+        <form method="post" class="form-inline">
+            <div class="form-group mx-sm-3 mb-2">
+                <input type="text" name="text" class="form-control" placeholder="Input message" />
+                <input type="text" name="tag" class="form-control" placeholder="Input tag" />
+            </div>
             <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
-            <input type="submit" value="Sign Out"/>
+            <button type="submit" class="btn btn-secondary mb-2">Add</button>
         </form>
-    </div>
-    <div>
-        <form method="post">
-            <input type="text" name="text" placeholder="Input message" />
-            <input type="text" name="tag" placeholder="Input tag" />
+
+
+        <h2>List of messages:</h2>
+
+        <form method="post" action="filter" class="form-inline">
+            <div class="form-group mx-sm-3 mb-2">
+                <input type="text" name="filter" class="form-control"/>
+            </div>
+            <button type="submit" class="btn btn-secondary mb-2">Filter</button>
             <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
-            <button type="submit">Add</button>
         </form>
+
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Message</th>
+                <th scope="col">Tag</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            {{#messages}}
+                <tr>
+                    <th scope="row">{{id}}</th>
+                    <td>{{text}}</td>
+                    <td>{{tag}}</td>
+                </tr>
+            {{/messages}}
+
+            </tbody>
+        </table>
     </div>
-    <div>List of messages:</div>
-    <form method="post" action="filter">
-        <input type="text" name="filter" />
-        <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
-        <button type="submit">Filter</button>
-    </form>
-    {{#messages}}
-        <div>
-            <b>{{id}}</b>
-            <span>{{text}}</span>
-            <i>{{tag}}</i>
-        </div>
-    {{/messages}}
 </body>
 </html>
