@@ -1,19 +1,24 @@
 package ru.spbima.manjet.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.spbima.manjet.domain.Message;
+import ru.spbima.manjet.domain.User;
 import ru.spbima.manjet.repos.MessageRepo;
 
 import java.util.Map;
 
 @Controller
 public class MainController {
-    @Autowired
-    private MessageRepo messageRepo;
+
+    private final MessageRepo messageRepo;
+
+    public MainController(MessageRepo messageRepo) {
+        this.messageRepo = messageRepo;
+    }
 
     @GetMapping("/")
     public String greeting(
@@ -30,11 +35,13 @@ public class MainController {
     }
 
     @PostMapping("/main")
-    public String add(@RequestParam String text,
-                      @RequestParam String tag,
-                      Map<String, Object> model
+    public String add(
+            @AuthenticationPrincipal User user,
+            @RequestParam String text,
+            @RequestParam String tag,
+            Map<String, Object> model
     ) {
-        Message message = new Message(text, tag);
+        Message message = new Message(text, tag, user);
         messageRepo.save(message);
 
         Iterable<Message> messages = messageRepo.findAll();
