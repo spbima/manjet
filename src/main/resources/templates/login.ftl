@@ -1,5 +1,5 @@
 <#import "parts/common.ftl" as common>
-<#import "parts/login_form.ftl" as login>
+<#import "parts/loginForm.ftl" as login>
 
 <@common.page "Login">
     <@login.login ""/>

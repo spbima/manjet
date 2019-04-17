@@ -8,7 +8,6 @@ import ru.spbima.manjet.domain.Role;
 import ru.spbima.manjet.domain.User;
 import ru.spbima.manjet.repos.UserRepo;
 
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Map;
 
@@ -46,7 +45,7 @@ public class RegistrationController {
         user.setRoles(Collections.singleton(Role.USER));
         userRepo.save(user);
 
-        return "registration_complete";
+        return "registrationComplete";
 
         // TODO: mark fields if error
 

@@ -1,5 +1,5 @@
 <#import "parts/common.ftl" as common>
-<#import "parts/reg_form.ftl" as login>
+<#import "parts/regForm.ftl" as login>
 
 <@common.page "Registration">
     <@login.registration_complite />
