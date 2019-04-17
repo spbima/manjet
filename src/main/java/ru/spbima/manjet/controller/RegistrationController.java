@@ -25,10 +25,20 @@ public class RegistrationController {
 
     @PostMapping("/registration")
     public String addUser(User user, Map<String, Object> model) {
+        if(user.getUsername().equals("") || user.getPassword().equals("")) {
+            model.put("message", "Username and password mustn't be empty!");
+            model.put("user_name", user.getUsername());
+            model.put("user_password", user.getPassword());
+
+            return "registration";
+        }
+
         User userFromDB = userRepo.findByUsername(user.getUsername());
 
         if (userFromDB != null) {
-            model.put("message", "User with this login already exist!");
+            model.put("message", "User with this login already exists!");
+            model.put("user_name", user.getUsername());
+            model.put("user_password", user.getPassword());
             return "registration";
         }
 
@@ -38,6 +48,8 @@ public class RegistrationController {
 
         return "registration_complete";
 
-        //return "redirect:/login";
+        // TODO: mark fields if error
+
+        // TODO: display error in "sign in" form
     }
 }

@@ -1,3 +1,4 @@
+<#macro page title>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,28 +8,16 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-    <title>Login page</title>
+
+    <title>Manjet / ${title}</title>
 </head>
 <body>
     <div class="container">
-        <div style="height: 30px"></div>
-        <div class="row">
-            <div class="mx-auto col-sm-6">
-                <div class="card">
-                    <article class="card-body">
-                        <h4 class="card-title text-center mb-4 mt-1">Registration</h4>
-
-                        <hr>
-                        <p class="text-success text-center">Registration completed!</p>
-
-                        <p class="text-center">Now you cat <a href="/login">Sign In</a></p>
-
-                    </article>
-                </div>
-            </div>
-        </div>
+    <#nested>
     </div>
 </body>
 </html>
+</#macro>
