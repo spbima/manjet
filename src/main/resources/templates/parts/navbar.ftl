@@ -1,3 +1,4 @@
+<!-- < #assign security=JspTaglibs["http://www.springframework.org/security/tags"] / > -->
 <#macro navbar>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">#</a>
@@ -12,9 +13,14 @@
             <li class="nav-item">
                 <a class="nav-link" href="/main">Messages</a>
             </li>
+
+
+            <!-- < @security.authorize  access="hasRole('ADMIN')" > -->
+
             <li class="nav-item">
                 <a class="nav-link" href="/user">Users</a>
             </li>
+            <!-- < /@security.authorize > -->
             <!--
             <li class="nav-item">
                 <a class="nav-link disabled" href="#">Disabled</a>
